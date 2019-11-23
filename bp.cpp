@@ -159,6 +159,8 @@ public:
             case WT:
                 state = ST;
                 break;
+            case ST:
+                break;
         }
     }
     void failed () {
@@ -171,6 +173,8 @@ public:
                 break;
             case WNT:
                 state = SNT;
+                break;
+            case SNT:
                 break;
         }
     }
@@ -222,22 +226,8 @@ public:
         tagSize = tag_size;
         historySize = history_size;
         firstState = first_state;
-        switch (isGT) {
-            case 1:
-                isGlobalTable = GLOBAL_TABLE;
-                break;
-            case 0:
-                isGlobalTable = LOCAL_TABLE;
-                break;
-        }
-        switch (isGH) {
-            case 1:
-                isGlobalHistory = GLOBAL_HISTORY;
-                break;
-            case 0:
-                isGlobalHistory = LOCAL_HISTORY;
-                break;
-        }
+        isGlobalHistory = isGH ? GLOBAL_HISTORY : LOCAL_HISTORY ;
+        isGlobalTable = isGT ? GLOBAL_TABLE : LOCAL_TABLE ;
         switch (isShare) {
             case 0:
                 share = NOT_USING_SHARE;
