@@ -8,7 +8,14 @@
 #include <stdbool.h>
 
 #include "bp_api.h"
-
+int main1() {
+    if(BP_init(16, 5, 20, 1, true, true, 0) < 0) {
+        printf("%s", "FAILED\n");
+    }
+    printf("%s", "SUCCESS\n");
+    uint32_t dst;
+    BP_predict(123, &dst);
+}
 int main(int argc, char **argv) {
 
 	if (argc < 2) {
@@ -105,13 +112,13 @@ int main(int argc, char **argv) {
 		printf("0x%x\n", dst);
 
 
-		BP_update(pc, targetPc, taken, dst);
+	//	BP_update(pc, targetPc, taken, dst);
 	}
 
-	SIM_stats stats;
+	/*SIM_stats stats;
 	BP_GetStats(&stats);
 	printf("flush_num: %d, br_num: %d, size: %db\n", stats.flush_num, stats.br_num, stats.size);
-
+*/
 	return 0;
 }
 
